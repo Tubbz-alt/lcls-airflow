@@ -1,0 +1,24 @@
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--redis-0
+  labels:
+    type: local
+spec:
+  storageClassName: lcls-airflow-dev--redis
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: /gpfs/slac/cryo/fs1/daq/lcls/dev/messagebus/redis-0
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: storage/lcls
+          operator: In
+          values:
+          - 'true'

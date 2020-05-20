@@ -1,0 +1,117 @@
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--dags
+  labels:
+    type: local
+spec:
+  storageClassName: lcls-airflow-dev--dags
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  local:
+    path: /gpfs/slac/cryo/fs1/daq/lcls/dev/airflow/dags
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: storage/lcls
+          operator: In
+          values:
+          - 'true'
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--dags
+spec:
+  storageClassName: lcls-airflow-dev--dags
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--plugins
+  labels:
+    type: local
+spec:
+  storageClassName: lcls-airflow-dev--plugins
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  local:
+    path: /gpfs/slac/cryo/fs1/daq/lcls/dev/airflow/plugins
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: storage/lcls
+          operator: In
+          values:
+          - 'true'
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--plugins
+spec:
+  storageClassName: lcls-airflow-dev--plugins
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--logs
+  labels:
+    type: local
+spec:
+  storageClassName: lcls-airflow-dev--logs
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  local:
+    path: /gpfs/slac/cryo/fs1/daq/lcls/dev/airflow/logs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: storage/lcls
+          operator: In
+          values:
+          - 'true'
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: lcls-airflow-dev--logs
+spec:
+  storageClassName: lcls-airflow-dev--logs
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: 1Gi
+
